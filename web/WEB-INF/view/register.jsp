@@ -22,30 +22,38 @@
             <div class="card-header">
                 <h3 style="text-align: center">Tell Us About Yourself</h3>
             </div>
+            <c:forEach var="error" items="${errors}">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>${error}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:forEach>
             <div class="card-body">
                 <p class="card-title">Please provide the following information:</p>
-                <form>
+                <form action="register.do" method="post">
                     <div class="form-group">
                         <label for="email"><strong>Email Address</strong></label>
-                        <input type="email" class="form-control" id="email" placeholder="xyz@example.com">
+                        <input type="email" class="form-control" id="email" name="email" value="${form.email}" placeholder="xyz@example.com">
                     </div>
                     <div class="form-group">
                         <label for="password1"><strong>Password</strong></label>
-                        <input type="password" class="form-control" id="password1" placeholder="your password">
+                        <input type="password" class="form-control" id="password1" name="password1" value="${form.password1}" placeholder="your password">
                     </div>
                     <div class="form-group">
                         <label for="password2"><strong>Repeat Password</strong></label>
-                        <input type="password" class="form-control" id="password2" placeholder="repeat your password">
+                        <input type="password" class="form-control" id="password2" name="password2" value="${form.password2}" placeholder="repeat your password">
                     </div>
                     <div class="form-group">
                         <label for="firstname"><strong>First Name</strong></label>
-                        <input type="text" class="form-control" id="firstname" placeholder="firstname">
+                        <input type="text" class="form-control" id="firstname" name="firstname" value="${form.firstname}" placeholder="firstname">
                     </div>
                     <div class="form-group">
                         <label for="lastname"><strong>Last Name</strong></label>
-                        <input type="text" class="form-control" id="lastname" placeholder="lastname">
+                        <input type="text" class="form-control" id="lastname" name="lastname" value="${form.lastname}" placeholder="lastname">
                     </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary" name="button" value="register">Register</button>
                     <a class="btn btn-primary" style="color:white" href="login.do">Already have account</a>
                 </form>
             </div>

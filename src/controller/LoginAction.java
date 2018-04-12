@@ -49,6 +49,7 @@ public class LoginAction extends Action {
             List<String> errors = new ArrayList<>();
             request.setAttribute("errors", errors);
             LoginForm loginForm = new LoginForm(request);
+            request.setAttribute("form", loginForm);
             errors.addAll(loginForm.getValidationErrors());
             if (errors.size() > 0) {
                 return "login.jsp";

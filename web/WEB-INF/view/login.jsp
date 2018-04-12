@@ -35,11 +35,11 @@
                 <form action="login.do" method="post">
                     <div class="form-group">
                         <label for="email"><strong>Email Address</strong></label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="xyz@example.com" />
+                        <input type="email" class="form-control" name="email" id="email" value="${form.email}" placeholder="xyz@example.com" />
                     </div>
                     <div class="form-group">
                         <label for="password"><strong>Password</strong></label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="your password" />
+                        <input type="password" class="form-control" name="password" id="password" value="${form.password}"placeholder="your password" />
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="check" />
