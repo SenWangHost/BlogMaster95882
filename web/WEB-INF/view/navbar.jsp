@@ -22,12 +22,24 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="homepage.do">HomePage<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="login.do">Login</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="register.do">Register</a>
-                </li>
+                <c:choose>
+                    <c:when test="${user == null}">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="login.do">Login</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="register.do">Register</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item active">
+                            Login as:<a class="nav-link" href="homepage.do"><strong>${user.firstname}${user.lastname}</strong></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="logout.do">Logout</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
