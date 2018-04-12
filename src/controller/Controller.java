@@ -25,6 +25,7 @@ public class Controller extends HttpServlet {
         model = new Model(getServletConfig());
 
 		/* Actions here */
+		Action.add(new LoginAction(model));
 
     }
 
@@ -35,13 +36,13 @@ public class Controller extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (model.getRequireSSL() && !request.isSecure()) {
-            // If we're required to use SSL and we're not on a secure connection, redirect
-            String host = request.getServerName();
-            String port = (request.getServerPort() == 80) ? "" : ":8443";
-            response.sendRedirect("https://" + host + port + request.getRequestURI());
-            return;
-        }
+//        if (model.getRequireSSL() && !request.isSecure()) {
+//            // If we're required to use SSL and we're not on a secure connection, redirect
+//            String host = request.getServerName();
+//            String port = (request.getServerPort() == 80) ? "" : ":8443";
+//            response.sendRedirect("https://" + host + port + request.getRequestURI());
+//            return;
+//        }
 
         String nextPage = performTheAction(request);
         sendToNextPage(nextPage, request, response);
@@ -50,6 +51,8 @@ public class Controller extends HttpServlet {
     private String performTheAction(HttpServletRequest request) {
         String servletPath = request.getServletPath();
         String action = getActionName(servletPath);
+
+
         System.out.println("ServletPath: "+servletPath);
         System.out.println("[perform the action]Action: " + action);
 
@@ -59,7 +62,7 @@ public class Controller extends HttpServlet {
     private void sendToNextPage(String nextPage, HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-        System.out.println(nextPage);
+        // System.out.println(nextPage);
         if (nextPage == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, request.getServletPath());
             return;
