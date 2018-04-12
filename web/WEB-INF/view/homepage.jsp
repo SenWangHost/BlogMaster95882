@@ -15,6 +15,8 @@
 <body>
     <%--this is the navbar section--%>
     <jsp:include page="navbar.jsp" />
+    <%--this is the dashboard section--%>
+    <jsp:include page="dashboard.jsp" />
     <%--This is the body section--%>
     <div>
         <h1>This is the homepage.</h1>

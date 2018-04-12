@@ -33,7 +33,7 @@
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item active">
-                            Login as:<a class="nav-link" href="homepage.do"><strong>${user.firstname}${user.lastname}</strong></a>
+                            <a class="nav-link" href="homepage.do">Login as:<strong>${user.firstname}${user.lastname}</strong></a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="logout.do">Logout</a>
