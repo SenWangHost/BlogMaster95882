@@ -14,6 +14,7 @@ public class Model {
 
 
     private boolean requireSSL;
+    private UserDAO userDAO;
 
     /**
      * Constructor.
@@ -26,17 +27,22 @@ public class Model {
         String jdbcDriver = config.getInitParameter("jdbcDriverName");
         String jdbcURL = config.getInitParameter("jdbcURL");
 
-//        try {
-//            ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL);
-//			/* DAOs */
-//
-//        } catch (DAOException e) {
-//            throw new ServletException(e);
-//        }
+        try {
+            ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL);
+			/* DAOs */
+			userDAO = new UserDAO("user", pool);
+
+        } catch (DAOException e) {
+            throw new ServletException(e);
+        }
     }
 
     public boolean getRequireSSL() {
         return requireSSL;
+    }
+
+    public UserDAO getUserDAO() {
+        return userDAO;
     }
 
 }

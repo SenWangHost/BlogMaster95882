@@ -2,6 +2,7 @@ package databean;
 
 import org.genericdao.PrimaryKey;
 
+@PrimaryKey("email")
 public class User {
     private String email;
     private String password;

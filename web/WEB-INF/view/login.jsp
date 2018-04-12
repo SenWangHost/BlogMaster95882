@@ -31,13 +31,13 @@
                     </div>
                     <div class="form-group">
                         <label for="password"><strong>Password</strong></label>
-                        <input type="password" class="form-control" id="password" placeholder="your password">
+                        <input type="password" class="form-control" id="password" placeholder="your password" />
                     </div>
                     <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="check">
+                        <input type="checkbox" class="form-check-input" id="check" />
                         <label class="form-check-label" for="check">Remember Me</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary" value="Login">Login</button>
                     <a class="btn btn-primary" style="color:white" href="register.do">Register</a>
                 </form>
             </div>

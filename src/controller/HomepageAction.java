@@ -4,7 +4,7 @@ import model.Model;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class Homepage extends Action {
+public class HomepageAction extends Action {
     /**
      * This is the name of the action
      * @return
@@ -18,7 +18,7 @@ public class Homepage extends Action {
      * The constructor for the homepage action.
      * @param model
      */
-    public Homepage(Model model) {
+    public HomepageAction(Model model) {
 
     }
 
