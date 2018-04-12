@@ -22,22 +22,30 @@
             <div class="card-header">
                 <h3 style="text-align: center">Welcome To Blog Master</h3>
             </div>
+            <c:forEach var="error" items="${errors}">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>${error}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:forEach>
             <div class="card-body">
                 <p class="card-title">Please provide your email and password:</p>
-                <form>
+                <form action="login.do" method="post">
                     <div class="form-group">
                         <label for="email"><strong>Email Address</strong></label>
-                        <input type="email" class="form-control" id="email" placeholder="xyz@example.com">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="xyz@example.com" />
                     </div>
                     <div class="form-group">
                         <label for="password"><strong>Password</strong></label>
-                        <input type="password" class="form-control" id="password" placeholder="your password" />
+                        <input type="password" class="form-control" name="password" id="password" placeholder="your password" />
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="check" />
                         <label class="form-check-label" for="check">Remember Me</label>
                     </div>
-                    <button type="submit" class="btn btn-primary" value="Login">Login</button>
+                    <button type="submit" class="btn btn-primary" name="button" value="login">Login</button>
                     <a class="btn btn-primary" style="color:white" href="register.do">Register</a>
                 </form>
             </div>

@@ -46,7 +46,7 @@ public class LoginAction extends Action {
             return "homepage.do";
         }
         try {
-            List<String> errors = new ArrayList<String>();
+            List<String> errors = new ArrayList<>();
             request.setAttribute("errors", errors);
             LoginForm loginForm = new LoginForm(request);
             errors.addAll(loginForm.getValidationErrors());
@@ -54,9 +54,19 @@ public class LoginAction extends Action {
                 return "login.jsp";
             }
             User user = userDAO.read(loginForm.getEmail());
+            // check the user
             if (user == null) {
-
+                errors.add("The user account doesn't exist!");
+                return "login.jsp";
             }
+            // check the password
+            if (!user.getPassword().equals(loginForm.getPassword())) {
+                errors.add("The password is incorrect!");
+                return "login.jsp";
+            }
+            session.setAttribute("user", user);
+            return "homepage.do";
+
         } catch (RollbackException e) {
             e.printStackTrace();
         }

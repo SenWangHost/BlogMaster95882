@@ -30,7 +30,7 @@ public class Model {
         try {
             ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL);
 			/* DAOs */
-			userDAO = new UserDAO("user", pool);
+			userDAO = new UserDAO("users", pool);
 
         } catch (DAOException e) {
             throw new ServletException(e);

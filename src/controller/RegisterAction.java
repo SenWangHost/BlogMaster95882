@@ -1,10 +1,13 @@
 package controller;
 
 import model.Model;
+import model.UserDAO;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class RegisterAction extends Action {
+    private UserDAO userDAO;
     /**
      * the get name method for register action.
      * @return
@@ -19,7 +22,7 @@ public class RegisterAction extends Action {
      * @param model
      */
     public RegisterAction(Model model) {
-
+        userDAO = model.getUserDAO();
     }
 
     /**
@@ -30,6 +33,10 @@ public class RegisterAction extends Action {
      */
     @Override
     public String performGet(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            return "homepage.do";
+        }
         return "register.jsp";
     }
 
@@ -41,6 +48,11 @@ public class RegisterAction extends Action {
      */
     @Override
     public String performPost(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            return "homepage.do";
+        }
+
         return "register.jsp";
     }
 }
