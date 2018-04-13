@@ -31,7 +31,7 @@
         <button type="button" class="btn btn-outline-success btn-lg btn-block">My Profile</button>
     </div>
     <div class="buttonsection">
-        <button type="button" class="btn btn-warning btn-lg btn-block" href="logout.do">Log Out</button>
+        <a class="btn btn-outline-warning btn-lg btn-block" href="logout.do">Log Out</a>
     </div>
 </div>
 </body>

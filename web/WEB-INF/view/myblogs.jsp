@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <title>Blog Master My Blogs</title>
@@ -23,64 +24,28 @@
     <div>
         <%--This is the new blog section--%>
         <div class="newblogsection">
-            <form>
+            <form action="createblog.do" method="post">
                 <div>
                     <div class="form-group">
                         <label class="textareatitle" for="textarea">Say Something Today!!!</label>
+                        <c:forEach var="error" items="${errors}">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>${error}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </c:forEach>
                         <textarea style="width: 73vw;"class="form-control" id="textarea" name="content" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success">Post</button>
+                        <button type="submit" class="btn btn-success" name="button" value="post">Post</button>
                     </div>
                 </div>
             </form>
         </div>
         <%--This is the blogs displays section--%>
         <div>
-            <div class="chatcontainer">
-                <label>Sen Wang</label>
-                <a href="#"><i class="material-icons">favorite_border</i></a>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <div class="likedislike">
-                    <a class="social-like" href="#">
-                        <span class="like"><i class="material-icons">thumb_up</i></span>
-                        <span class="count" >15</span>
-                    </a>
-                    &nbsp;
-                    <a class="social-dislike" href="#">
-                        <span class="dislike" >10</span>
-                        <span class="like"><i class="material-icons">thumb_down</i></span>
-                    </a>
-                </div>
-                <span>2018 June 15th</span>
-            </div>
-            <div class="chatcontainer">
-                <label>Sen Wang</label>
-                <a href="#"><i class="material-icons">favorite_border</i></a>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <div class="likedislike">
-                    <a class="social-like" href="#">
-                        <span class="like"><i class="material-icons">thumb_up</i></span>
-                        <span class="count" >15</span>
-                    </a>
-                    &nbsp;
-                    <a class="social-dislike" href="#">
-                        <span class="dislike" >10</span>
-                        <span class="like"><i class="material-icons">thumb_down</i></span>
-                    </a>
-                </div>
-                <span>2018 June 15th</span>
-            </div>
             <div class="chatcontainer">
                 <label>Sen Wang</label>
                 <a href="#"><i class="material-icons">favorite_border</i></a>

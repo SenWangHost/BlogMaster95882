@@ -40,8 +40,8 @@ public class MyBlogsAction extends Action {
     @Override
     public String performPost(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (session.getAttribute("user") != null) {
-            return "homepage.do";
+        if (session.getAttribute("user") == null) {
+            return "myblogs.do";
         }
 
         return "login.jsp";
