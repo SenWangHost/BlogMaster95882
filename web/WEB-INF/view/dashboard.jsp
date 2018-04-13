@@ -13,13 +13,16 @@
 <body>
 <div class="col-sm-2 sidebar">
     <div class="imagesec">
-        <img src="../../static/images/accountimage.png" width="220px" height="220px" alt="accountimage" />
+        <img src="../../static/images/accountimage.png" width="200vw" height="200vh" alt="accountimage" />
     </div>
     <div class="namesection">
         <p>Sen Wang</p>
     </div>
     <div class="buttonsection">
-        <button type="button" class="btn btn-outline-success btn-lg btn-block">My Blogs</button>
+        <a class="btn btn-outline-success btn-lg btn-block" href="homepage.do">Public Space</a>
+    </div>
+    <div class="buttonsection">
+        <a class="btn btn-outline-success btn-lg btn-block" href="myblogs.do">My Blogs</a>
     </div>
     <div class="buttonsection">
         <button type="button" class="btn btn-outline-success btn-lg btn-block">My Favorites</button>
@@ -28,7 +31,7 @@
         <button type="button" class="btn btn-outline-success btn-lg btn-block">My Profile</button>
     </div>
     <div class="buttonsection">
-        <button type="button" class="btn btn-warning btn-lg btn-block">Log Out</button>
+        <button type="button" class="btn btn-warning btn-lg btn-block" href="logout.do">Log Out</button>
     </div>
 </div>
 </body>

@@ -29,6 +29,7 @@ public class Controller extends HttpServlet {
         Action.add(new RegisterAction(model));
         Action.add(new HomepageAction(model));
         Action.add(new LogoutAction(model));
+        Action.add(new MyBlogsAction(model));
     }
 
     @Override

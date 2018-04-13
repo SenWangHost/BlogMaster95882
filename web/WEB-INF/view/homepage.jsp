@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: SenWang
@@ -16,7 +17,9 @@
     <%--this is the navbar section--%>
     <jsp:include page="navbar.jsp" />
     <%--this is the dashboard section--%>
-    <jsp:include page="dashboard.jsp" />
+    <c:if test="${user != null}" >
+        <jsp:include page="dashboard.jsp" />
+    </c:if>
     <%--This is the body section--%>
     <div>
         <h1>This is the homepage.</h1>

@@ -15,6 +15,7 @@ public class Model {
 
     private boolean requireSSL;
     private UserDAO userDAO;
+    private BlogDAO blogDAO;
 
     /**
      * Constructor.
@@ -31,6 +32,7 @@ public class Model {
             ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL);
 			/* DAOs */
 			userDAO = new UserDAO("users", pool);
+			blogDAO = new BlogDAO("blogs", pool);
 
         } catch (DAOException e) {
             throw new ServletException(e);
@@ -44,5 +46,6 @@ public class Model {
     public UserDAO getUserDAO() {
         return userDAO;
     }
+    public BlogDAO getBlogDAO() {return blogDAO;}
 
 }
