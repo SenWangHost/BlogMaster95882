@@ -15,7 +15,7 @@ public class LikeDislikeDAO extends GenericDAO<LikeDislike> {
     }
 
     /**
-     *
+     * the function to get one like and dislike
      * @param blogid
      * @return
      * @throws RollbackException
@@ -27,6 +27,32 @@ public class LikeDislikeDAO extends GenericDAO<LikeDislike> {
         } else {
             return results[0];
         }
+    }
+
+    /**
+     * The function to get the number of like and dislike
+     * @param blogid
+     * @return  the first is the number of like, the second is the number of dislike
+     * @throws RollbackException
+     */
+    public int[] getLikeDislikeNumbers(int blogid) throws RollbackException {
+        LikeDislike[] list = match(MatchArg.equals("blogid", blogid));
+        int[] result = new int[2];
+        if (list == null || list.length == 0) {
+            return result;
+        }
+        int like = 0;
+        int dislike = 0;
+        for (LikeDislike ele : list) {
+            if (ele.getStatus()) {
+                like++;
+            } else {
+                dislike++;
+            }
+        }
+        result[0] = like;
+        result[1] = dislike;
+        return result;
     }
 
 }

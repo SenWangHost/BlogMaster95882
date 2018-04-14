@@ -48,12 +48,18 @@ public class MyBlogsAction extends Action {
             boolean[] fStatuses = new boolean[myblogs.length];
             int[] fNumbers = new int[myblogs.length];
             LikeDislike[] ldlist = new LikeDislike[myblogs.length];
+            int[] likeNumbers = new int[myblogs.length];
+            int[] dislikeNumbers = new int[myblogs.length];
             for (int i = 0; i < myblogs.length; i++) {
                 Blog blog = myblogs[i];
                 Favorite favorite = favoriteDAO.checkFavorite(blog.getId(), user.getEmail());
                 fNumbers[i] = favoriteDAO.getFavoriteNumber(blog.getId());
                 ldlist[i] = likeDislikeDAO.getLikeDislike(blog.getId(), user.getEmail());
-                System.out.println(ldlist[i]);
+                // System.out.println(ldlist[i]);
+                int[] temp = likeDislikeDAO.getLikeDislikeNumbers(blog.getId());
+                likeNumbers[i] = temp[0];
+                dislikeNumbers[i] = temp[1];
+                System.out.println(likeNumbers[i] + " " + dislikeNumbers[i]);
                 if (favorite == null) {
                     fStatuses[i] = false;
                 } else {
@@ -64,6 +70,8 @@ public class MyBlogsAction extends Action {
             request.setAttribute("fStatuses", fStatuses);
             request.setAttribute("fNumbers", fNumbers);
             request.setAttribute("ldlist", ldlist);
+            request.setAttribute("likeNumbers", likeNumbers);
+            request.setAttribute("dislikeNumbers", dislikeNumbers);
             return "myblogs.jsp";
         } catch (RollbackException e) {
             e.printStackTrace();
