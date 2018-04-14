@@ -3,7 +3,6 @@ package controller;
 import databean.Blog;
 import databean.Favorite;
 import databean.User;
-import formbean.LoginForm;
 import model.BlogDAO;
 import model.FavoriteDAO;
 import model.Model;
@@ -11,9 +10,6 @@ import org.genericdao.RollbackException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 public class MyBlogsAction extends Action {
     private BlogDAO blogDAO;

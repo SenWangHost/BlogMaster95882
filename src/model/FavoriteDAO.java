@@ -31,4 +31,11 @@ public class FavoriteDAO extends GenericDAO<Favorite> {
         Favorite[] favorites = match(MatchArg.equals("blogid", blogid));
         return favorites.length;
     }
+    /**
+     * the functionality to get all favorite blog id belongs to one user
+     */
+    public Favorite[] getAllFavorites(String email) throws RollbackException {
+        Favorite[] favorites = match(MatchArg.equals("email", email));
+        return favorites;
+    }
 }
