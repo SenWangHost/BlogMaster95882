@@ -24,4 +24,11 @@ public class FavoriteDAO extends GenericDAO<Favorite> {
             return favorites[0];
         }
     }
+    /**
+     * the functionality to get the number of functionality for one block
+     */
+    public int getFavoriteNumber(int blogid) throws RollbackException {
+        Favorite[] favorites = match(MatchArg.equals("blogid", blogid));
+        return favorites.length;
+    }
 }

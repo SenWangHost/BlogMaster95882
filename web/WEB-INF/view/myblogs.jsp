@@ -57,7 +57,7 @@
                             <a href="favorite.do?blogid=${blog.id}"><i class="material-icons">favorite_border</i></a>
                         </c:otherwise>
                     </c:choose>
-                    <span>13</span>
+                    <span>${fNumbers[loop.index]}</span>
                     <p>${blog.content}</p>
                     <div class="likedislike">
                         <a class="social-like" href="#">

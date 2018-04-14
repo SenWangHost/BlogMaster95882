@@ -46,17 +46,20 @@ public class MyBlogsAction extends Action {
         try {
             Blog[] myblogs = blogDAO.getAllBlogs(user.getEmail());
             boolean[] fStatuses = new boolean[myblogs.length];
+            int[] fNumbers = new int[myblogs.length];
             for (int i = 0; i < myblogs.length; i++) {
                 Blog blog = myblogs[i];
                 Favorite favorite = favoriteDAO.checkFavorite(blog.getId(), user.getEmail());
+                fNumbers[i] = favoriteDAO.getFavoriteNumber(blog.getId());
                 if (favorite == null) {
                     fStatuses[i] = false;
                 } else {
                     fStatuses[i] = true;
                 }
             }
-            session.setAttribute("blogs", myblogs);
-            session.setAttribute("fStatuses", fStatuses);
+            request.setAttribute("blogs", myblogs);
+            request.setAttribute("fStatuses", fStatuses);
+            request.setAttribute("fNumbers", fNumbers);
             return "myblogs.jsp";
         } catch (RollbackException e) {
             e.printStackTrace();
