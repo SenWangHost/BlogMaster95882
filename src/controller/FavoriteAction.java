@@ -43,6 +43,7 @@ public class FavoriteAction extends Action {
         User user = (User) session.getAttribute("user");
         // not a safe way to get parameter
         String bid = request.getParameter("blogid");
+        String page = request.getParameter("page");
         int blogid = 0;
         try {
             blogid = Integer.parseInt(bid);
@@ -55,7 +56,11 @@ public class FavoriteAction extends Action {
             } else {
                 favoriteDAO.delete(favorite.getId());
             }
-            return "myblogs.do";
+            if (page.equals("homepage")) {
+                return "homepage.do";
+            } else {
+                return "myblogs.do";
+            }
         } catch (NumberFormatException e) {
             e.printStackTrace();
             return "errors.jsp";

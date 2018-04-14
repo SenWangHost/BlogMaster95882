@@ -26,6 +26,17 @@ public class BlogDAO extends GenericDAO<Blog> {
         Arrays.sort(results, new BlogComparator());
         return results;
     }
+
+    /**
+     * get all blogs from all users
+     */
+    public Blog[] getAllBlogs() throws RollbackException {
+        Blog[] results = match();
+        if (results != null || results.length > 0) {
+            Arrays.sort(results, new BlogComparator());
+        }
+        return results;
+    }
     public class BlogComparator implements Comparator<Blog> {
         /**
          *

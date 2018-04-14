@@ -16,7 +16,7 @@
         <img src="../../static/images/accountimage.png" width="200vw" height="200vh" alt="accountimage" />
     </div>
     <div class="namesection">
-        <p>Sen Wang</p>
+        <p>${user.firstname} ${user.lastname}</p>
     </div>
     <div class="buttonsection">
         <a class="btn btn-outline-success btn-lg btn-block" href="homepage.do">Public Space</a>

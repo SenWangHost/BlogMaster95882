@@ -12,6 +12,8 @@
     <title>BlogMaster Homepage</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../static/css/homepage.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 </head>
 <body>
     <%--this is the navbar section--%>
@@ -22,7 +24,70 @@
     </c:if>
     <%--This is the body section--%>
     <div>
-        <h1>This is the homepage.</h1>
+        <%--This is the blogs displays section--%>
+        <div>
+            <c:forEach var="blog" items="${blogs}" varStatus="loop">
+                <div class="chatcontainer">
+                    <label>${blog.author}</label>
+                    <c:choose>
+                        <c:when test="${fStatuses[loop.index]}">
+                            <a href="favorite.do?blogid=${blog.id}&page=homepage"><i class="material-icons">favorite</i></a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="favorite.do?blogid=${blog.id}&page=homepage"><i class="material-icons">favorite_border</i></a>
+                        </c:otherwise>
+                    </c:choose>
+                    <span>${fNumbers[loop.index]}</span>
+                    <p>${blog.content}</p>
+                    <c:choose>
+                        <c:when test="${empty ldlist[loop.index]}">
+                            <div class="likedislike">
+                                <a class="social-like" href="likedislike.do?blogid=${blog.id}&status=1">
+                                    <span class="like"><i class="material-icons">thumb_up</i></span>
+                                    <span class="count" >${likeNumbers[loop.index]}</span>
+                                </a>
+                                &nbsp;
+                                <a class="social-dislike" href="likedislike.do?blogid=${blog.id}&status=0">
+                                    <span class="dislike">${dislikeNumbers[loop.index]}</span>
+                                    <span class="like"><i class="material-icons">thumb_down</i></span>
+                                </a>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="likedislike">
+                                <c:choose>
+                                    <c:when test="${ldlist[loop.index].status}">
+                                        <a class="social-like-disable" href="likedislike.do?blogid=${blog.id}&status=1" onclick="return false;">
+                                            <span class="like"><i class="material-icons">do_not_disturb</i></span>
+                                            <span class="count" >${likeNumbers[loop.index]}</span>
+                                        </a>
+                                        &nbsp;
+                                        <a class="social-dislike" href="likedislike.do?blogid=${blog.id}&status=0">
+                                            <span class="dislike" >${dislikeNumbers[loop.index]}</span>
+                                            <span class="like"><i class="material-icons">thumb_down</i></span>
+                                        </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a class="social-like" href="likedislike.do?blogid=${blog.id}&status=1">
+                                            <span class="like"><i class="material-icons">thumb_up</i></span>
+                                            <span class="count" >${likeNumbers[loop.index]}</span>
+                                        </a>
+                                        &nbsp;
+                                        <a class="social-dislike-disable" href="likedislike.do?blogid=${blog.id}&status=0" onclick="return false;">
+                                            <span class="dislike" >${dislikeNumbers[loop.index]}</span>
+                                            <span class="like"><i class="material-icons">do_not_disturb</i></span>
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <span>${blog.date}</span>
+                </div>
+            </c:forEach>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>

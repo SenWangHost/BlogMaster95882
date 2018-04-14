@@ -36,6 +36,8 @@ public class LoginAction extends Action {
         if (session.getAttribute("user") != null) {
             return "homepage.do";
         }
+        LoginForm loginForm = new LoginForm(request);
+        request.setAttribute("form", loginForm);
         return "login.jsp";
     }
 

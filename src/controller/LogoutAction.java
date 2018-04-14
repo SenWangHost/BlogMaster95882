@@ -29,7 +29,7 @@ public class LogoutAction extends Action {
     public String performGet(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") == null) {
-            return "login.do";
+            return "homepage.do";
         }
         // Otherwise, just display the login page.
         session.setAttribute("user", null);
