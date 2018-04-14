@@ -3,6 +3,7 @@ package model;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
+import databean.LikeDislike;
 import org.genericdao.ConnectionPool;
 import org.genericdao.DAOException;
 /**
@@ -17,6 +18,7 @@ public class Model {
     private UserDAO userDAO;
     private BlogDAO blogDAO;
     private FavoriteDAO favoriteDAO;
+    private LikeDislikeDAO likeDislikeDAO;
 
     /**
      * Constructor.
@@ -35,6 +37,7 @@ public class Model {
 			userDAO = new UserDAO("users", pool);
 			blogDAO = new BlogDAO("blogs", pool);
 			favoriteDAO = new FavoriteDAO("favorites", pool);
+			likeDislikeDAO = new LikeDislikeDAO("likedislikes", pool);
 
         } catch (DAOException e) {
             throw new ServletException(e);
@@ -50,5 +53,6 @@ public class Model {
     }
     public BlogDAO getBlogDAO() { return blogDAO; }
     public FavoriteDAO getFavoriteDAO() { return favoriteDAO;}
+    public LikeDislikeDAO getLikeDislikeDAO() { return likeDislikeDAO; }
 
 }

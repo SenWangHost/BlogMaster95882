@@ -53,6 +53,12 @@ textarea {
     display: inline-block;
 }
 
+.disablelink {
+    pointer-events: none;
+    cursor: default;
+    background-color: gray;
+}
+
 
 .social-like, .social-dislike {
     font-size: 16px;
@@ -61,6 +67,17 @@ textarea {
     color: #fff;
     cursor: pointer;
     display:inline-block;
+
+}
+
+.social-like-disable, .social-dislike-disable {
+    font-size: 16px;
+    /*width: 48%;*/
+    background-color: gray;
+    color: #fff;
+    cursor: not-allowed;
+    display:inline-block;
+    border-radius: 5px;
 
 }
 
