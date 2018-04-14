@@ -16,6 +16,7 @@ public class Model {
     private boolean requireSSL;
     private UserDAO userDAO;
     private BlogDAO blogDAO;
+    private FavoriteDAO favoriteDAO;
 
     /**
      * Constructor.
@@ -33,6 +34,7 @@ public class Model {
 			/* DAOs */
 			userDAO = new UserDAO("users", pool);
 			blogDAO = new BlogDAO("blogs", pool);
+			favoriteDAO = new FavoriteDAO("favorites", pool);
 
         } catch (DAOException e) {
             throw new ServletException(e);
@@ -46,6 +48,7 @@ public class Model {
     public UserDAO getUserDAO() {
         return userDAO;
     }
-    public BlogDAO getBlogDAO() {return blogDAO;}
+    public BlogDAO getBlogDAO() { return blogDAO; }
+    public FavoriteDAO getFavoriteDAO() { return favoriteDAO;}
 
 }

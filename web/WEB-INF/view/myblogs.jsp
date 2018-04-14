@@ -21,7 +21,7 @@
     <%--This is the dashboard section--%>
     <jsp:include page="dashboard.jsp" />
     <%--This is the body section --%>
-    <div>
+    <div class="col-sm-10">
         <%--This is the new blog section--%>
         <div class="newblogsection">
             <form action="createblog.do" method="post">
@@ -36,7 +36,7 @@
                                 </button>
                             </div>
                         </c:forEach>
-                        <textarea style="width: 73vw;"class="form-control" id="textarea" name="content" rows="3"></textarea>
+                        <textarea class="form-control" id="textarea" name="content" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success" name="button" value="post">Post</button>
@@ -46,28 +46,34 @@
         </div>
         <%--This is the blogs displays section--%>
         <div>
-            <div class="chatcontainer">
-                <label>Sen Wang</label>
-                <a href="#"><i class="material-icons">favorite_border</i></a>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <div class="likedislike">
-                    <a class="social-like" href="#">
-                        <span class="like"><i class="material-icons">thumb_up</i></span>
-                        <span class="count" >15</span>
-                    </a>
-                    &nbsp;
-                    <a class="social-dislike" href="#">
-                        <span class="dislike" >10</span>
-                        <span class="like"><i class="material-icons">thumb_down</i></span>
-                    </a>
+            <c:forEach var="blog" items="${blogs}" varStatus="loop">
+                <div class="chatcontainer">
+                    <label>${blog.author}</label>
+                    <c:choose>
+                        <c:when test="${fStatuses[loop.index]}">
+                            <a href="favorite.do?blogid=${blog.id}"><i class="material-icons">favorite</i></a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="favorite.do?blogid=${blog.id}"><i class="material-icons">favorite_border</i></a>
+                        </c:otherwise>
+                    </c:choose>
+                    <span>13</span>
+                    <p>${blog.content}</p>
+                    <div class="likedislike">
+                        <a class="social-like" href="#">
+                            <span class="like"><i class="material-icons">thumb_up</i></span>
+                            <span class="count" >15</span>
+                        </a>
+                        &nbsp;
+                        <a class="social-dislike" href="#">
+                            <span class="dislike" >10</span>
+                            <span class="like"><i class="material-icons">thumb_down</i></span>
+                        </a>
+                    </div>
+                    <span>${blog.date}</span>
                 </div>
-                <span>2018 June 15th</span>
-            </div>
+            </c:forEach>
+
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
