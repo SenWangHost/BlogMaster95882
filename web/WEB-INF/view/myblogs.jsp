@@ -50,11 +50,14 @@
                 <div class="chatcontainer">
                     <label>${blog.author}</label>
                     <div class="tags">
-                        <a class="badge badge-pill badge-info" href="#">Info</a>
-                        <a class="badge badge-pill badge-info" href="#">Info</a>
-                        <a class="badge badge-pill badge-info" href="#">Info</a>
+                        <c:forEach var="tag" items="${allTags[loop.index]}" >
+                            <a class="badge badge-pill badge-info" href="#">${tag.tagname}</a>
+                        </c:forEach>
+                        <%--<a class="badge badge-pill badge-info" href="#">Info</a>--%>
+                        <%--<a class="badge badge-pill badge-info" href="#">Info</a>--%>
+                        <%--<a class="badge badge-pill badge-info" href="#">Info</a>--%>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#Modal${blog.id}">
                             Add Tag
                         </button>
                     </div>
@@ -116,7 +119,7 @@
                     <%--This is the section for adding tag for this blog--%>
                     <div>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="Modal${blog.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -125,16 +128,26 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form>
+                                    <form id="addtagform" action="addtag.do" method="post">
                                         <div class="modal-body">
+                                            <c:forEach var="error" items="${errors}">
+                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                    <strong>${error}</strong>
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            </c:forEach>
                                             <div class="form-group">
                                                 <label for="TagName">Tag Name</label>
-                                                <input type="text" class="form-control" id="TagName" name="tagname" placeholder="Tag Name">
+                                                <input type="text" class="form-control" id="TagName" name="tagname" placeholder="Tag Name" required/>
+                                                <input type="hidden" name="blogid" value="${blog.id}"/>
+                                                <input type="hidden" name="page" value="myblogs"/>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-outline-success" name="button" value="add">Add</button>
+                                            <button type="submit" class="btn btn-outline-success" name="button" value="add">Add</button>
                                         </div>
                                     </form>
 
@@ -149,5 +162,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="../../static/js/myblogs.js" />
 </body>
 </html>

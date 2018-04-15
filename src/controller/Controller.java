@@ -35,6 +35,7 @@ public class Controller extends HttpServlet {
         Action.add(new MyFavoritesAction(model));
         Action.add(new LikeDislikeAction(model));
         Action.add(new SearchAction(model));
+        Action.add(new AddTagAction(model));
     }
 
     @Override

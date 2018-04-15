@@ -29,6 +29,18 @@
             <c:forEach var="blog" items="${blogs}" varStatus="loop">
                 <div class="chatcontainer">
                     <label>${blog.author}</label>
+                    <div class="tags">
+                        <c:forEach var="tag" items="${allTags[loop.index]}" >
+                            <a class="badge badge-pill badge-info" href="#">${tag.tagname}</a>
+                        </c:forEach>
+                            <%--<a class="badge badge-pill badge-info" href="#">Info</a>--%>
+                            <%--<a class="badge badge-pill badge-info" href="#">Info</a>--%>
+                            <%--<a class="badge badge-pill badge-info" href="#">Info</a>--%>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#Modal${blog.id}">
+                            Add Tag
+                        </button>
+                    </div>
                     <c:choose>
                         <c:when test="${fStatuses[loop.index]}">
                             <a href="favorite.do?blogid=${blog.id}&page=homepage"><i class="material-icons">favorite</i></a>
@@ -85,6 +97,46 @@
                     </c:choose>
 
                     <span>${blog.date}</span>
+                        <%--This is the section for adding tag for this blog--%>
+                    <div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="Modal${blog.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class0="modal-title" id="exampleModalLabel">Add A Tag For This Blog</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form id="addtagform" action="addtag.do" method="post">
+                                        <div class="modal-body">
+                                            <c:forEach var="error" items="${errors}">
+                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                    <strong>${error}</strong>
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            </c:forEach>
+                                            <div class="form-group">
+                                                <label for="TagName">Tag Name</label>
+                                                <input type="text" class="form-control" id="TagName" name="tagname" placeholder="Tag Name" required/>
+                                                <input type="hidden" name="blogid" value="${blog.id}"/>
+                                                <input type="hidden" name="page" value="homepage"/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-outline-success" name="button" value="add">Add</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </c:forEach>
         </div>

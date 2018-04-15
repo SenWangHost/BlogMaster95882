@@ -1,22 +1,19 @@
 package controller;
 
-import databean.Blog;
-import databean.Favorite;
-import databean.LikeDislike;
-import databean.User;
-import model.BlogDAO;
-import model.FavoriteDAO;
-import model.LikeDislikeDAO;
-import model.Model;
+import databean.*;
+import model.*;
 import org.genericdao.RollbackException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomepageAction extends Action {
     private BlogDAO blogDAO;
     private FavoriteDAO favoriteDAO;
     private LikeDislikeDAO likeDislikeDAO;
+    private TagDAO tagDAO;
     /**
      * This is the name of the action
      * @return
@@ -34,6 +31,7 @@ public class HomepageAction extends Action {
         blogDAO = model.getBlogDAO();
         favoriteDAO = model.getFavoriteDAO();
         likeDislikeDAO = model.getLikeDislikeDAO();
+        tagDAO = model.getTagDAO();
     }
 
     /**
@@ -53,6 +51,7 @@ public class HomepageAction extends Action {
             LikeDislike[] ldlist = new LikeDislike[myblogs.length];
             int[] likeNumbers = new int[myblogs.length];
             int[] dislikeNumbers = new int[myblogs.length];
+            List<Tag[]> allTags = new ArrayList<>();
             for (int i = 0; i < myblogs.length; i++) {
                 Blog blog = myblogs[i];
                 Favorite favorite = null;
@@ -68,6 +67,8 @@ public class HomepageAction extends Action {
                 likeNumbers[i] = temp[0];
                 dislikeNumbers[i] = temp[1];
                 System.out.println(likeNumbers[i] + " " + dislikeNumbers[i]);
+                Tag[] tags = tagDAO.getAllTags(blog.getId());
+                allTags.add(tags);
                 if (favorite == null) {
                     fStatuses[i] = false;
                 } else {
@@ -80,6 +81,7 @@ public class HomepageAction extends Action {
             request.setAttribute("ldlist", ldlist);
             request.setAttribute("likeNumbers", likeNumbers);
             request.setAttribute("dislikeNumbers", dislikeNumbers);
+            request.setAttribute("allTags", allTags);
             return "homepage.jsp";
         } catch (RollbackException e) {
             e.printStackTrace();
