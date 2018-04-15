@@ -123,4 +123,9 @@ textarea {
     margin-right: -10px;
 }
 
+.tags {
+    /*float: left;*/
+    display: inline-block;
+}
+
 

@@ -42,6 +42,7 @@ public class LikeDislikeAction extends Action {
         // not a safe way to get parameter
         String bid = request.getParameter("blogid");
         String sta = request.getParameter("status");
+        String page = request.getParameter("page");
         try {
             int blogid = Integer.parseInt(bid);
             boolean status = Integer.parseInt(sta) == 1 ? true : false;
@@ -58,7 +59,11 @@ public class LikeDislikeAction extends Action {
                     likeDislikeDAO.update(likeDislike);
                 }
             }
-            return "myblogs.do";
+            if (page.equals("homepage")) {
+                return "homepage.do";
+            } else {
+                return "myblogs.do";
+            }
         } catch (NumberFormatException e) {
             e.printStackTrace();
             return "errors.jsp";

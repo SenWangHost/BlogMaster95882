@@ -28,6 +28,9 @@
         <a class="btn btn-outline-success btn-lg btn-block" href="myfavorites.do">My Favorites</a>
     </div>
     <div class="buttonsection">
+        <a class="btn btn-outline-success btn-lg btn-block" href="search.do">Search Blogs</a>
+    </div>
+    <div class="buttonsection">
         <button type="button" class="btn btn-outline-success btn-lg btn-block">My Profile</button>
     </div>
     <div class="buttonsection">

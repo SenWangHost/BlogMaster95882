@@ -42,12 +42,12 @@
                     <c:choose>
                         <c:when test="${empty ldlist[loop.index]}">
                             <div class="likedislike">
-                                <a class="social-like" href="likedislike.do?blogid=${blog.id}&status=1">
+                                <a class="social-like" href="likedislike.do?blogid=${blog.id}&status=1&page=homepage">
                                     <span class="like"><i class="material-icons">thumb_up</i></span>
                                     <span class="count" >${likeNumbers[loop.index]}</span>
                                 </a>
                                 &nbsp;
-                                <a class="social-dislike" href="likedislike.do?blogid=${blog.id}&status=0">
+                                <a class="social-dislike" href="likedislike.do?blogid=${blog.id}&status=0&page=homepage">
                                     <span class="dislike">${dislikeNumbers[loop.index]}</span>
                                     <span class="like"><i class="material-icons">thumb_down</i></span>
                                 </a>
@@ -57,23 +57,23 @@
                             <div class="likedislike">
                                 <c:choose>
                                     <c:when test="${ldlist[loop.index].status}">
-                                        <a class="social-like-disable" href="likedislike.do?blogid=${blog.id}&status=1" onclick="return false;">
+                                        <a class="social-like-disable" href="likedislike.do?blogid=${blog.id}&status=1&page=homepage" onclick="return false;">
                                             <span class="like"><i class="material-icons">do_not_disturb</i></span>
                                             <span class="count" >${likeNumbers[loop.index]}</span>
                                         </a>
                                         &nbsp;
-                                        <a class="social-dislike" href="likedislike.do?blogid=${blog.id}&status=0">
+                                        <a class="social-dislike" href="likedislike.do?blogid=${blog.id}&status=0&page=homepage">
                                             <span class="dislike" >${dislikeNumbers[loop.index]}</span>
                                             <span class="like"><i class="material-icons">thumb_down</i></span>
                                         </a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a class="social-like" href="likedislike.do?blogid=${blog.id}&status=1">
+                                        <a class="social-like" href="likedislike.do?blogid=${blog.id}&status=1&page=homepage">
                                             <span class="like"><i class="material-icons">thumb_up</i></span>
                                             <span class="count" >${likeNumbers[loop.index]}</span>
                                         </a>
                                         &nbsp;
-                                        <a class="social-dislike-disable" href="likedislike.do?blogid=${blog.id}&status=0" onclick="return false;">
+                                        <a class="social-dislike-disable" href="likedislike.do?blogid=${blog.id}&status=0&page=homepage" onclick="return false;">
                                             <span class="dislike" >${dislikeNumbers[loop.index]}</span>
                                             <span class="like"><i class="material-icons">do_not_disturb</i></span>
                                         </a>

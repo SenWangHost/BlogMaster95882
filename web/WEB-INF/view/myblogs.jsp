@@ -49,12 +49,21 @@
             <c:forEach var="blog" items="${blogs}" varStatus="loop">
                 <div class="chatcontainer">
                     <label>${blog.author}</label>
+                    <div class="tags">
+                        <a class="badge badge-pill badge-info" href="#">Info</a>
+                        <a class="badge badge-pill badge-info" href="#">Info</a>
+                        <a class="badge badge-pill badge-info" href="#">Info</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModal">
+                            Add Tag
+                        </button>
+                    </div>
                     <c:choose>
                         <c:when test="${fStatuses[loop.index]}">
                             <a href="favorite.do?blogid=${blog.id}&page=myblogs"><i class="material-icons">favorite</i></a>
                         </c:when>
                         <c:otherwise>
-                            <a href="favorite.do?blogid=${blog.id}&page=myblogs=${blog.email}"><i class="material-icons">favorite_border</i></a>
+                            <a href="favorite.do?blogid=${blog.id}&page=myblogs"><i class="material-icons">favorite_border</i></a>
                         </c:otherwise>
                     </c:choose>
                     <span>${fNumbers[loop.index]}</span>
@@ -62,12 +71,12 @@
                     <c:choose>
                         <c:when test="${empty ldlist[loop.index]}">
                             <div class="likedislike">
-                                <a class="social-like" href="likedislike.do?blogid=${blog.id}&status=1">
+                                <a class="social-like" href="likedislike.do?blogid=${blog.id}&status=1&page=myblogs">
                                     <span class="like"><i class="material-icons">thumb_up</i></span>
                                     <span class="count" >${likeNumbers[loop.index]}</span>
                                 </a>
                                 &nbsp;
-                                <a class="social-dislike" href="likedislike.do?blogid=${blog.id}&status=0">
+                                <a class="social-dislike" href="likedislike.do?blogid=${blog.id}&status=0&page=myblogs">
                                     <span class="dislike">${dislikeNumbers[loop.index]}</span>
                                     <span class="like"><i class="material-icons">thumb_down</i></span>
                                 </a>
@@ -77,23 +86,23 @@
                             <div class="likedislike">
                                 <c:choose>
                                     <c:when test="${ldlist[loop.index].status}">
-                                        <a class="social-like-disable" href="likedislike.do?blogid=${blog.id}&status=1" onclick="return false;">
+                                        <a class="social-like-disable" href="likedislike.do?blogid=${blog.id}&status=1&page=myblogs" onclick="return false;">
                                             <span class="like"><i class="material-icons">do_not_disturb</i></span>
                                             <span class="count" >${likeNumbers[loop.index]}</span>
                                         </a>
                                         &nbsp;
-                                        <a class="social-dislike" href="likedislike.do?blogid=${blog.id}&status=0">
+                                        <a class="social-dislike" href="likedislike.do?blogid=${blog.id}&status=0&page=myblogs">
                                             <span class="dislike" >${dislikeNumbers[loop.index]}</span>
                                             <span class="like"><i class="material-icons">thumb_down</i></span>
                                         </a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a class="social-like" href="likedislike.do?blogid=${blog.id}&status=1">
+                                        <a class="social-like" href="likedislike.do?blogid=${blog.id}&status=1&page=myblogs">
                                             <span class="like"><i class="material-icons">thumb_up</i></span>
                                             <span class="count" >${likeNumbers[loop.index]}</span>
                                         </a>
                                         &nbsp;
-                                        <a class="social-dislike-disable" href="likedislike.do?blogid=${blog.id}&status=0" onclick="return false;">
+                                        <a class="social-dislike-disable" href="likedislike.do?blogid=${blog.id}&status=0&page=myblogs" onclick="return false;">
                                             <span class="dislike" >${dislikeNumbers[loop.index]}</span>
                                             <span class="like"><i class="material-icons">do_not_disturb</i></span>
                                         </a>
@@ -103,8 +112,36 @@
                             </div>
                         </c:otherwise>
                     </c:choose>
-
                     <span>${blog.date}</span>
+                    <%--This is the section for adding tag for this blog--%>
+                    <div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class0="modal-title" id="exampleModalLabel">Add A Tag For This Blog</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="TagName">Tag Name</label>
+                                                <input type="text" class="form-control" id="TagName" name="tagname" placeholder="Tag Name">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-outline-success" name="button" value="add">Add</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </c:forEach>
         </div>
